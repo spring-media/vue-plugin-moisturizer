@@ -1,0 +1,6 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`throws error if 2 components have the same name 1`] = `
+"You are trying to hydrate multiple components that have the same name!
+Please provide different names for components using \\"A\\", \\"B\\""
+`;
