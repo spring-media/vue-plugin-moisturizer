@@ -35,3 +35,6 @@ sftp-config.json
 
 ### Node ###
 node_modules
+
+### coverate ###
+coverage
