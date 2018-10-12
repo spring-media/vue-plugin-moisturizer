@@ -49,3 +49,15 @@ test("logs a warning if a component is not provided for hydration", () => {
   );
   spy.mockRestore();
 });
+
+test("does not log warnings in production env", () => {
+  const spy = jest.spyOn(console, "warn").mockImplementation(() => {});
+  const orignalEnv = process.env.NODE_ENV;
+  process.env.NODE_ENV = "production";
+  document.body.innerHTML =
+    '<a data-hydrate="X">X</a><a data-hydrate="Y">Y</a>';
+  hydrateComponents([A]);
+  expect(console.warn).not.toHaveBeenCalled();
+  spy.mockRestore();
+  process.env.NODE_ENV = orignalEnv;
+});
