@@ -3,6 +3,7 @@ import A from "./fixtures/components/A.vue";
 import B from "./fixtures/components/B.vue";
 import AConflict from "./fixtures/components/A.conflict.vue";
 import BConflict from "./fixtures/components/B.conflict.vue";
+import Wet from "./fixtures/components/Wet.vue";
 
 test("applies template to containers without markup", () => {
   document.body.innerHTML = '<a data-hydrate="A"></a><a data-hydrate="B"></a>';
@@ -20,6 +21,12 @@ test("hydrates components with fitting markup", () => {
   document.body.innerHTML = '<a data-hydrate="A">A</a>';
   hydrateComponents([A]);
   expect(document.body.innerHTML).toBe("<a>A</a>");
+});
+
+test("hydrates components with existing attributes", () => {
+  document.body.innerHTML = '<a data-hydrate="Wet" custom="Stuff">A</a>';
+  hydrateComponents([Wet]);
+  expect(document.body.innerHTML).toBe("<div custom=\"Stuff\">Got: Stuff</div>");
 });
 
 test("enables javascript on hydration", () => {
