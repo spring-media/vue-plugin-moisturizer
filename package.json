@@ -22,5 +22,8 @@
 		"vue-jest": "2.6.0",
 		"vue-server-renderer": "2.5.17",
 		"vue-template-compiler": "2.5.17"
+	},
+	"dependencies": {
+		"md5": "2.2.1"
 	}
 }
