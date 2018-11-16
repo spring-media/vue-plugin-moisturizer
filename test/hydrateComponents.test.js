@@ -86,26 +86,26 @@ test('logs a warning if a component is not provided for hydration', () => {
    const spy = jest.spyOn(console, 'error').mockImplementation(() => {
   });
    document.body.innerHTML =
-    '<a data-hydrate="X">X</a><a data-hydrate="Y">Y</a>';
+    '<a data-hydrate-fingerprint="unknown-fp-1234">X</a><a data-hydrate-fingerprint="unknown-fp-4231">Y</a>';
   hydrateComponents([A]);
   expect(console.error).toHaveBeenCalledWith (
-    'Vue Moisturizer: You did not provide the component "X" in the client',
+    'Vue Moisturizer: You did not provide the component "unknown-fp-1234" in the client',
   );
   expect(console.error).toHaveBeenCalledWith (
-    'Vue Moisturizer: You did not provide the component "Y" in the client',
+    'Vue Moisturizer: You did not provide the component "unknown-fp-4231" in the client',
   );
   spy.mockRestore();
 });
 
 test('does not log warnings in production env', () => {
-  const spy = jest.spyOn(console, 'warn').mockImplementation(() => {
+  const spy = jest.spyOn (console, 'warn').mockImplementation (() => {
+    const orignalEnv = process.env.NODE_ENV;
+    process.env.NODE_ENV = 'production';
+    document.body.innerHTML =
+      '<a data-hydrate-fingerprint="unknown-fp-1234">X</a><a data-hydrate-fingerprint="unknown-fp-4231">Y</a>';
+    hydrateComponents ([A]);
+    expect (console.warn).not.toHaveBeenCalled ();
+    spy.mockRestore ();
+    process.env.NODE_ENV = orignalEnv;
   });
-  const orignalEnv = process.env.NODE_ENV;
-  process.env.NODE_ENV = 'production';
-  document.body.innerHTML =
-    '<a data-hydrate="X">X</a><a data-hydrate="Y">Y</a>';
-  hydrateComponents([A]);
-  expect(console.warn).not.toHaveBeenCalled();
-  spy.mockRestore();
-  process.env.NODE_ENV = orignalEnv;
 });
