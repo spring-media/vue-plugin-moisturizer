@@ -1,18 +1,41 @@
-import Vue from "vue";
-import { shallowMount } from "@vue/test-utils";
-import Moisturizer from "../lib/moisturizerVuePlugin";
-import Hydrate from "./fixtures/components/Hydrate.vue";
+/*
+ * @jest-environment node
+ */
 
-test("adds the the comps name as data prop if hydrate is true", () => {
-  Vue.use(Moisturizer);
-  const wrapper = shallowMount(Hydrate, {
-    propsData: { hydrate: true }
+import { createLocalVue } from '@vue/test-utils';
+import Moisturizer from '../lib/moisturizerVuePlugin';
+import Hydrate from './fixtures/components/Hydrate.vue';
+import Fingerprint from '../lib/fingerprinter';
+import config from '../lib/config';
+import { render } from '@vue/server-test-utils';
+
+
+const setupServerEnvironment = (localVue, isServer) => {
+	Object.defineProperty (localVue.prototype, '$isServer', {
+		get: () => isServer,
+	});
+};
+
+const init = () => {
+	const localVue = createLocalVue ();
+	setupServerEnvironment(localVue, true);
+	localVue.use(Moisturizer);
+  return localVue
+};
+
+
+test("adds the the comps fingerprint as data prop if hydrate is true", () => {
+  const localVue = init();
+  const wrapper = render(Hydrate, {
+    propsData: { hydrate: true },
+    localVue
   });
-  expect(wrapper.attributes("data-hydrate")).toBe("Hydrate");
+  const fingerprint = new Fingerprint(Hydrate).fingerprint();
+  expect(wrapper.attr(config.attrs.fingerprint)).toBe(fingerprint);
 });
 
 test("does not add the the comps name as data prop if hydrate is true", () => {
-  Vue.use(Moisturizer);
-  const wrapper = shallowMount(Hydrate);
-  expect(wrapper.attributes("data-hydrate")).toBe(undefined);
+  init();
+  const wrapper = render(Hydrate);
+  expect(wrapper.attr(config.attrs.fingerprint)).toBe(undefined);
 });
