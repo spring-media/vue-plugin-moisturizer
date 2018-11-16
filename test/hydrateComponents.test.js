@@ -4,73 +4,75 @@ import B from './fixtures/components/B.vue';
 import AConflict from './fixtures/components/A.conflict.vue';
 import BConflict from './fixtures/components/B.conflict.vue';
 import Wet from './fixtures/components/Wet.vue';
-import Fingerprint from '../lib/fingerprinter';
-import { createLocalVue, mount } from '@vue/test-utils';
-import MoisturizerVuePlugin from '../lib/moisturizerVuePlugin';
-import Slots from '../lib/slots';
-import Props from '../lib/props';
+import { createHTMLNode, init } from './utils';
+import Handlebars from './fixtures/components/Handlebars.vue';
+import HandlebarsNoProp from './fixtures/components/HandlebarsNoProp.vue';
+import Conditional from './fixtures/components/Conditional.vue';
 
-
-const setLocalVueEnv = (localVue, isServer) => {
-  Object.defineProperty (localVue.prototype, '$isServer', {
-  	get: () => isServer,
-  });
-};
-
-const init = (components) => {
-  const localVue = createLocalVue ();
-  const isServer = true;
-  setLocalVueEnv (localVue, isServer);
-  localVue.use(MoisturizerVuePlugin);
-  return components.map (c => mount (c));
-};
-
-const createHTMLNode = (name, component, innerHtml = '', attributes = {}) => {
-  const fp = `fingerprint="${new Fingerprint (component).fingerprint()}"`;
-  const props = `props="${new Props(component).serialize(component.$props || [])}"`;
-  const slots = `slots="${new Slots(component).serialize(component.$slots || [])}"`;
-  const attrs = Object.keys(attributes).map(x => `${x}="${attributes[x]}"`);
-
-  return `<${name} ` +
-    [fp, props, slots].map(x => 'data-hydrate-' + x).join(' ')
-    + (!attrs ? '' : ' ' + attrs.join(' '))
-    + `>${innerHtml}</${name}>`;
-};
 
 test('applies template to containers without markup', () => {
-  const wrappers = init([A, B]);
-  const aHTML = createHTMLNode('a', wrappers[0].vm);
-  const bHTML = createHTMLNode('a', wrappers[1].vm);
+  const {mounted} = init([A, B]);
+  const aHTML = createHTMLNode('a', mounted[0].vm);
+  const bHTML = createHTMLNode('a', mounted[1].vm);
   document.body.innerHTML = aHTML + bHTML;
   hydrateComponents([A, B]);
   expect(document.body.innerHTML).toBe('<a>A</a><a>B</a>');
 });
 
 test('applies template to containers with mismatching markup', () => {
-  const wrappers = init([A]);
-  document.body.innerHTML = createHTMLNode('a', wrappers[0].vm, 'foo <em>bar</em>');
+  const {mounted} = init([A]);
+  document.body.innerHTML = createHTMLNode('a', mounted[0].vm, 'foo <em>bar</em>');
   hydrateComponents ([A]);
   expect (document.body.innerHTML).toBe('<a>A</a>');
 });
 
 test('hydrates components with fitting markup', () => {
-  const wrappers = init([A]);
-  document.body.innerHTML = createHTMLNode('a', wrappers[0].vm, 'A');
+  const {mounted} = init([A]);
+  document.body.innerHTML = createHTMLNode('a', mounted[0].vm, 'A');
   hydrateComponents([A]);
   expect (document.body.innerHTML).toBe('<a>A</a>');
 });
 
 test('hydrates components with existing attributes', () => {
-  const wrappers = init([Wet]);
-  document.body.innerHTML = createHTMLNode('a', wrappers[0].vm, 'A', {custom: "Stuff"});
+  const {mounted} = init([Wet]);
+  document.body.innerHTML = createHTMLNode('a', mounted[0].vm, 'A', {custom: "Stuff"});
   hydrateComponents([Wet]);
   expect (document.body.innerHTML).toBe('<div custom="Stuff">Got: Stuff</div>');
 });
 
+
+test("hydrates components with props", () => {
+  const {mounted} = init([Handlebars]);
+  document.body.innerHTML = createHTMLNode('a', mounted[0].vm, '', {name: 'Bernd'});
+  hydrateComponents([Handlebars]);
+  expect(document.body.innerHTML).toBe('<div>Bernd</div>');
+});
+
+test("hydrates components without props", () => {
+  const {mounted} = init([HandlebarsNoProp]);
+  document.body.innerHTML = createHTMLNode('a', mounted[0].vm);
+  hydrateComponents([HandlebarsNoProp]);
+  expect(document.body.innerHTML).toMatch('<div></div>');
+});
+
+test("hydrates conditional components with props", () => {
+  const {mounted} = init([Conditional]);
+  document.body.innerHTML = createHTMLNode('a', mounted[0].vm, '', {name: 'Bernd'});
+  hydrateComponents([Conditional]);
+  expect(document.body.innerHTML).toMatch('<div><b>Bernd</b></div>');
+});
+
+test("hydrates conditional components without props", () => {
+  const {mounted} = init([Conditional]);
+  document.body.innerHTML = createHTMLNode('a', mounted[0].vm);
+  hydrateComponents([Conditional]);
+  expect(document.body.innerHTML).toMatch('<div><i>No Name</i></div>');
+});
+
 test('enables javascript on hydration', () => {
-  const wrappers = init ([A]);
+  const {mounted} = init ([A]);
   window.spy = jest.fn ();
-  document.body.innerHTML = createHTMLNode ('a', wrappers[0].vm, 'A');
+  document.body.innerHTML = createHTMLNode ('a', mounted[0].vm, 'A');
   hydrateComponents ([A]);
   document.querySelector ('a').click ();
   expect (window.spy).toHaveBeenCalledWith ('A');
