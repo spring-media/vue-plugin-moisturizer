@@ -1,5 +1,5 @@
 import Vue from "vue";
-import instantiateApp from "../lib/instantiateApp";
+import {instantiateApp} from "../lib/index";
 import App from "./fixtures/components/App.vue";
 
 test("returns a Vue instance without Vue options", () => {
