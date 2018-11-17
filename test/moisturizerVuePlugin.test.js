@@ -20,7 +20,7 @@ test("adds the the comps fingerprint as data prop if hydrate is true", () => {
   expect(wrapper.attr(config.attrs.fingerprint)).toBe(fingerprint);
 });
 
-test("does not add the the comps name as data prop if hydrate is true", () => {
+test("does not add the the comps fingerprint as data prop if hydrate is true", () => {
   init();
   const wrapper = render(Hydrate);
   expect(wrapper.attr(config.attrs.fingerprint)).toBe(undefined);
