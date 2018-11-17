@@ -101,13 +101,14 @@ test('logs a warning if a component is not provided for hydration', () => {
 
 test('does not log warnings in production env', () => {
   const spy = jest.spyOn (console, 'warn').mockImplementation (() => {
-    const orignalEnv = process.env.NODE_ENV;
-    process.env.NODE_ENV = 'production';
-    document.body.innerHTML =
-      '<a data-hydrate-fingerprint="unknown-fp-1234">X</a><a data-hydrate-fingerprint="unknown-fp-4231">Y</a>';
-    hydrateComponents ([A]);
-    expect (console.warn).not.toHaveBeenCalled ();
-    spy.mockRestore ();
-    process.env.NODE_ENV = orignalEnv;
   });
+  const orignalEnv = process.env.NODE_ENV;
+  process.env.NODE_ENV = 'production';
+  document.body.innerHTML =
+    '<a data-hydrate-fingerprint="unknown-fp-1234">X</a><a data-hydrate-fingerprint="unknown-fp-4231">Y</a>';
+  hydrateComponents ([A]);
+  expect (console.warn).not.toHaveBeenCalled ();
+  spy.mockRestore ();
+  process.env.NODE_ENV = orignalEnv;
 });
+

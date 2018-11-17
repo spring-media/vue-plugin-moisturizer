@@ -10,7 +10,7 @@ import Fingerprint from '../lib/fingerprinter';
 import config from '../lib/config';
 
 
-test("adds the the comps fingerprint as data prop if hydrate is true", () => {
+test("adds the comps fingerprint as data prop if hydrate is true", () => {
   const {localVue} = init();
   const wrapper = render(Hydrate, {
     propsData: { hydrate: true },
