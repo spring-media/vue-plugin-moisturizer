@@ -8,6 +8,7 @@ import { createHTMLNode, init } from './utils';
 import Handlebars from './fixtures/components/Handlebars.vue';
 import HandlebarsNoProp from './fixtures/components/HandlebarsNoProp.vue';
 import Conditional from './fixtures/components/Conditional.vue';
+import WithSlots from './fixtures/components/WithSlots.vue';
 import { mount } from '@vue/test-utils';
 
 
@@ -40,6 +41,19 @@ test('hydrates components with serialized props', () => {
   document.body.innerHTML = createHTMLNode('a', mounted.vm, 'A');
   hydrateComponents([Handlebars]);
   expect(document.body.innerHTML).toBe('<div>John Doe</div>');
+});
+
+test('hydrates components with serialized slots', () => {
+  init();
+  const SomeSlot = {
+    name: 'SomeSlot',
+    render: (h) => h('b', 'slot'),
+  };
+  const mounted = mount(WithSlots, {slots: {default: SomeSlot}});
+  document.body.innerHTML = createHTMLNode('a', mounted.vm, 'A');
+  hydrateComponents([WithSlots, SomeSlot]);
+  expect(document. body.innerHTML).toBe('<div><b>slot</b></div>');
+
 });
 
 test('hydrates components with existing attributes', () => {
