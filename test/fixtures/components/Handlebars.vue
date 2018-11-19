@@ -1,10 +1,10 @@
 <template>
-  <div>{{name}}</div>
+  <div>{{nickname}}</div>
 </template>
 
 <script>
   export default {
     name: 'Handlebars',
-    props: ['name']
+    props: ['nickname']
   }
 </script>

@@ -16,7 +16,7 @@ test("adds the comps fingerprint as data prop if hydrate is true", () => {
     propsData: { hydrate: true },
     localVue
   });
-  const fingerprint = new Fingerprint(Hydrate).fingerprint();
+  const fingerprint = Fingerprint.print(Hydrate);
   expect(wrapper.attr(config.attrs.fingerprint)).toBe(fingerprint);
 });
 

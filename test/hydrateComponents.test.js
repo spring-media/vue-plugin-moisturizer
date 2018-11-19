@@ -8,6 +8,7 @@ import { createHTMLNode, init } from './utils';
 import Handlebars from './fixtures/components/Handlebars.vue';
 import HandlebarsNoProp from './fixtures/components/HandlebarsNoProp.vue';
 import Conditional from './fixtures/components/Conditional.vue';
+import { mount } from '@vue/test-utils';
 
 
 test('applies template to containers without markup', () => {
@@ -22,47 +23,55 @@ test('applies template to containers without markup', () => {
 test('applies template to containers with mismatching markup', () => {
   const {mounted} = init([A]);
   document.body.innerHTML = createHTMLNode('a', mounted[0].vm, 'foo <em>bar</em>');
-  hydrateComponents ([A]);
-  expect (document.body.innerHTML).toBe('<a>A</a>');
+  hydrateComponents([A]);
+  expect(document.body.innerHTML).toBe('<a>A</a>');
 });
 
 test('hydrates components with fitting markup', () => {
   const {mounted} = init([A]);
   document.body.innerHTML = createHTMLNode('a', mounted[0].vm, 'A');
   hydrateComponents([A]);
-  expect (document.body.innerHTML).toBe('<a>A</a>');
+  expect(document.body.innerHTML).toBe('<a>A</a>');
+});
+
+test('hydrates components with serialized props', () => {
+  init();
+  const mounted = mount(Handlebars, {propsData: {nickname: 'John Doe'}});
+  document.body.innerHTML = createHTMLNode('a', mounted.vm, 'A');
+  hydrateComponents([Handlebars]);
+  expect(document.body.innerHTML).toBe('<div>John Doe</div>');
 });
 
 test('hydrates components with existing attributes', () => {
   const {mounted} = init([Wet]);
   document.body.innerHTML = createHTMLNode('a', mounted[0].vm, 'A', {custom: "Stuff"});
   hydrateComponents([Wet]);
-  expect (document.body.innerHTML).toBe('<div custom="Stuff">Got: Stuff</div>');
+  expect(document.body.innerHTML).toBe('<div custom="Stuff">Got: Stuff</div>');
 });
 
 
-test("hydrates components with props", () => {
+test("hydrates components with attribute props", () => {
   const {mounted} = init([Handlebars]);
-  document.body.innerHTML = createHTMLNode('a', mounted[0].vm, '', {name: 'Bernd'});
+  document.body.innerHTML = createHTMLNode('a', mounted[0].vm, '', {nickname: 'Bernd'});
   hydrateComponents([Handlebars]);
   expect(document.body.innerHTML).toBe('<div>Bernd</div>');
 });
 
-test("hydrates components without props", () => {
+test("hydrates components without attribute props", () => {
   const {mounted} = init([HandlebarsNoProp]);
   document.body.innerHTML = createHTMLNode('a', mounted[0].vm);
   hydrateComponents([HandlebarsNoProp]);
   expect(document.body.innerHTML).toMatch('<div></div>');
 });
 
-test("hydrates conditional components with props", () => {
+test("hydrates conditional components with attribute props", () => {
   const {mounted} = init([Conditional]);
   document.body.innerHTML = createHTMLNode('a', mounted[0].vm, '', {name: 'Bernd'});
   hydrateComponents([Conditional]);
   expect(document.body.innerHTML).toMatch('<div><b>Bernd</b></div>');
 });
 
-test("hydrates conditional components without props", () => {
+test("hydrates conditional components without attribute props", () => {
   const {mounted} = init([Conditional]);
   document.body.innerHTML = createHTMLNode('a', mounted[0].vm);
   hydrateComponents([Conditional]);
