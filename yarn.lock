@@ -1172,6 +1172,11 @@ chalk@^2.0.0, chalk@^2.0.1, chalk@^2.1.0:
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
 
+charenc@~0.0.1:
+  version "0.0.2"
+  resolved "https://spring.jfrog.io/spring/api/npm/npm-red/charenc/-/charenc-0.0.2.tgz#c0a1d2f3a7092e03774bfa83f14c0fc5790a8667"
+  integrity sha1-wKHS86cJLgN3S/qD8UwPxXkKhmc=
+
 cheerio@^1.0.0-rc.2:
   version "1.0.0-rc.2"
   resolved "https://spring.jfrog.io/spring/api/npm/npm-red/cheerio/-/cheerio-1.0.0-rc.2.tgz#4b9f53a81b27e4d5dac31c0ffd0cfa03cc6830db"
@@ -1325,6 +1330,11 @@ cross-spawn@^5.0.1:
     lru-cache "^4.0.1"
     shebang-command "^1.2.0"
     which "^1.2.9"
+
+crypt@~0.0.1:
+  version "0.0.2"
+  resolved "https://spring.jfrog.io/spring/api/npm/npm-red/crypt/-/crypt-0.0.2.tgz#88d7ff7ec0dfb86f713dc87bbb42d044d3e6c41b"
+  integrity sha1-iNf/fsDfuG9xPch7u0LQRNPmxBs=
 
 css-select@~1.2.0:
   version "1.2.0"
@@ -2186,7 +2196,7 @@ is-arrayish@^0.2.1:
   resolved "https://spring.jfrog.io/spring/api/npm/npm-red/is-arrayish/-/is-arrayish-0.2.1.tgz#77c99840527aa8ecb1a8ba697b80645a7a926a9d"
   integrity sha1-d8mYQFJ6qOyxqLppe4BkWnqSap0=
 
-is-buffer@^1.1.5:
+is-buffer@^1.1.5, is-buffer@~1.1.1:
   version "1.1.6"
   resolved "https://spring.jfrog.io/spring/api/npm/npm-red/is-buffer/-/is-buffer-1.1.6.tgz#efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be"
   integrity sha1-76ouqdqg16suoTqXsritUf776L4=
@@ -3052,6 +3062,15 @@ math-random@^1.0.1:
   version "1.0.1"
   resolved "https://spring.jfrog.io/spring/api/npm/npm-red/math-random/-/math-random-1.0.1.tgz#8b3aac588b8a66e4975e3cdea67f7bb329601fac"
   integrity sha1-izqsWIuKZuSXXjzepn97sylgH6w=
+
+md5@2.2.1:
+  version "2.2.1"
+  resolved "https://spring.jfrog.io/spring/api/npm/npm-red/md5/-/md5-2.2.1.tgz#53ab38d5fe3c8891ba465329ea23fac0540126f9"
+  integrity sha1-U6s41f48iJG6RlMp6iP6wFQBJvk=
+  dependencies:
+    charenc "~0.0.1"
+    crypt "~0.0.1"
+    is-buffer "~1.1.1"
 
 mem@^1.1.0:
   version "1.1.0"
