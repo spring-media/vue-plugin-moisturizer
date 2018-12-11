@@ -26,5 +26,12 @@
 	"dependencies": {
 		"has-duplicates": "1.0.0",
 		"md5": "2.2.1"
+	},
+	"bugs": {
+		"url": "https://github.com/spring-media/vue-plugin-moisturizer/issues"
+	},
+	"homepage": "https://github.com/spring-media/vue-plugin-moisturizer#readme",
+	"publishConfig": {
+		"registry":"https://spring.jfrog.io/spring/api/npm/npm-local-red/"
 	}
 }
