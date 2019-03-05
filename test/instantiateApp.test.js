@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Moisturizer, { instantiateApp } from '../lib/index';
+import Moisturizer, { instantiateApp } from '../src/index';
 import App from './fixtures/components/App.vue';
 
 Vue.use(Moisturizer);
