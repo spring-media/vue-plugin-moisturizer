@@ -4,6 +4,9 @@
 	"main": "lib/index.js",
 	"author": "Lukas Bombach",
 	"license": "MIT",
+	"files": [
+		"/lib/"
+	],
 	"scripts": {
 		"test": "jest",
 		"build": "rimraf lib && cross-env BABEL_ENV=production babel src --out-dir lib",
