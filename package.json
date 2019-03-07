@@ -5,7 +5,7 @@
 	"author": "Lukas Bombach",
 	"license": "MIT",
 	"files": [
-		"/lib/"
+		"/lib/**/*.js"
 	],
 	"scripts": {
 		"test": "jest",
