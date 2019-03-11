@@ -1,8 +1,8 @@
-import Fingerprint from '../lib/fingerprinter';
-import Props from '../lib/props';
-import Slots from '../lib/slots';
+import Fingerprint from '../src/fingerprinter';
+import Props from '../src/props';
+import Slots from '../src/slots';
 import { createLocalVue, mount } from '@vue/test-utils';
-import MoisturizerVuePlugin from '../lib/moisturizerVuePlugin';
+import MoisturizerVuePlugin from '../src/moisturizerVuePlugin';
 
 export const createHTMLNode = (name, component, innerHtml = '', attributes = {}) => {
 	const fp = `fingerprint="${new Fingerprint(component).fingerprint()}"`;

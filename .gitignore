@@ -38,3 +38,6 @@ node_modules
 
 ### coverate ###
 coverage
+
+### Build artifacts
+/lib/*

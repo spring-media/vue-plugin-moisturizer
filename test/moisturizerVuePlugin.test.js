@@ -6,8 +6,8 @@ import { init } from './utils';
 import { render, renderToString } from '@vue/server-test-utils';
 import Hydrate from './fixtures/components/Hydrate.vue';
 import WithSlots from './fixtures/components/WithSlots.vue';
-import Fingerprint from '../lib/fingerprinter';
-import config from '../lib/config';
+import Fingerprint from '../src/fingerprinter';
+import config from '../src/config';
 
 
 test("adds the comps fingerprint as data prop if hydrate is true", () => {

@@ -1,4 +1,4 @@
-import { hydrateComponents } from '../lib/.';
+import { hydrateComponents } from '../src/.';
 import A from './fixtures/components/A.vue';
 import B from './fixtures/components/B.vue';
 import AConflict from './fixtures/components/A.conflict.vue';
