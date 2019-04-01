@@ -9,7 +9,8 @@ class Props {
 
 	serialize(props) {
 		const convertedProps = this.serializeComponents(props);
-		return this.stringifyForAttr(convertedProps);
+		const sanitizedProps = this.sanitizeProps(convertedProps);
+		return this.stringifyForAttr(sanitizedProps);
 	}
 
 	getFromElement(el, components) {
@@ -48,6 +49,24 @@ class Props {
 	stringifyForAttr(props) {
 		const json = JSON.stringify(props);
 		return json.replace(/'/g, "\\'").replace(/"/g, "'");
+	}
+
+	sanitizeProps(props) {
+		const result = Array.isArray(props) ? [] : {};
+
+		Object.keys(props).forEach(key => {
+			if (key === '__typename') {
+				return;
+			}
+
+			if (props[key] && typeof props[key] === 'object') {
+				result[key] = this.sanitizeProps(props[key]);
+			} else {
+				result[key] = props[key];
+			}
+		});
+
+		return result;
 	}
 
 	readPropsFromEl(el) {
