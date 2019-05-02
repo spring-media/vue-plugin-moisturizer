@@ -73,7 +73,12 @@ class Props {
 		const attr = el.getAttribute(config.attrs.props);
 		const json = (attr && attr.replace(/'/g, '"').replace(/&quot;/g, '"')) || '"{}"';
 
-		return JSON.parse(json);
+        try {
+            return JSON.parse(json);
+        } catch (err) {
+            console.error('Failed to deserialize JSON props: ', json);
+            throw err;
+        }
 	}
 }
 
