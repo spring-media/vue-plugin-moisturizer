@@ -1,7 +1,7 @@
 {
 	"name": "vue-plugin-moisturizer",
 	"version": "1.2.7",
-	"main": "lib/index.js",
+	"main": "src/index.js",
 	"author": "Lukas Bombach",
 	"license": "MIT",
 	"files": [
