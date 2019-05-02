@@ -24,7 +24,14 @@ class Hydrator {
 	}
 
 	mount(component, el) {
-		const props = new Props(this.components).getFromElement(el);
+		let props;
+		try {
+			props = new Props(this.components).getFromElement(el);
+		} catch (err) {
+			console.error('Failed to hydrate component: ', err);
+			return;
+		}
+
 		const slots = new Slots(this.components).getFromElement(el);
 		const htmlAttrs = [...el.attributes].filter(a => !a.name.startsWith('data-hydrate'));
 		const attrObjects = [...htmlAttrs].map(attr => ({ [attr.name]: attr.value }));
