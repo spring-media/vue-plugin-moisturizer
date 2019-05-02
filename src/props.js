@@ -48,7 +48,7 @@ class Props {
 
 	stringifyForAttr(props) {
 		const json = JSON.stringify(props);
-		return json.replace(/'/g, "\\'").replace(/"/g, "&quot;");
+		return json.replace(/'/g, "\\'").replace(/"/g, "&escapedquot;");
 	}
 
 	sanitizeProps(props) {
@@ -71,7 +71,7 @@ class Props {
 
 	readPropsFromEl(el) {
 		const attr = el.getAttribute(config.attrs.props);
-		const json = (attr && attr.replace(/'/g, '"').replace(/&quot;/g, '"')) || '"{}"';
+		const json = (attr && attr.replace(/'/g, '"').replace(/&escapedquot;/g, '"')) || '"{}"';
 
 		try {
 			return JSON.parse(json);
