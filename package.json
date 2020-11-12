@@ -26,10 +26,10 @@
 		"cross-env": "7.0.2",
 		"jest": "24.8.0",
 		"rimraf": "2.6.3",
-		"vue": "2.6.10",
+		"vue": "2.6.12",
 		"vue-jest": "3.0.4",
 		"vue-server-renderer": "2.6.12",
-		"vue-template-compiler": "2.6.10"
+		"vue-template-compiler": "2.6.12"
 	},
 	"dependencies": {
 		"has-duplicates": "1.0.0",
