@@ -1241,6 +1241,13 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/cheerio@^0.22.10":
+  version "0.22.22"
+  resolved "https://spring.jfrog.io/spring/api/npm/npm-red/@types/cheerio/-/cheerio-0.22.22.tgz#ae71cf4ca59b8bbaf34c99af7a5d6c8894988f5f"
+  integrity sha1-rnHPTKWbi7rzTJmvel1siJSYj18=
+  dependencies:
+    "@types/node" "*"
+
 "@types/commander@^2.11.0":
   version "2.12.2"
   resolved "https://spring.jfrog.io/spring/api/npm/npm-red/@types/commander/-/commander-2.12.2.tgz#183041a23842d4281478fa5d23c5ca78e6fd08ae"
@@ -1324,11 +1331,12 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@vue/server-test-utils@1.0.0-beta.29":
-  version "1.0.0-beta.29"
-  resolved "https://spring.jfrog.io/spring/api/npm/npm-red/@vue/server-test-utils/-/server-test-utils-1.0.0-beta.29.tgz#8a61a9900992b742cda7c143593db1c5e4a019bd"
-  integrity sha1-imGpkAmSt0LNp8FDWT2xxeSgGb0=
+"@vue/server-test-utils@1.1.1":
+  version "1.1.1"
+  resolved "https://spring.jfrog.io/spring/api/npm/npm-red/@vue/server-test-utils/-/server-test-utils-1.1.1.tgz#f01332688b8c65f62a723450ff8b393eb04ac378"
+  integrity sha1-8BMyaIuMZfYqcjRQ/4s5PrBKw3g=
   dependencies:
+    "@types/cheerio" "^0.22.10"
     cheerio "^1.0.0-rc.2"
 
 "@vue/test-utils@1.0.0-beta.29":
