@@ -18,7 +18,7 @@
 	"devDependencies": {
 		"@babel/cli": "7.12.8",
 		"@babel/core": "7.12.9",
-		"@babel/preset-env": "7.12.7",
+		"@babel/preset-env": "7.12.10",
 		"@vue/server-test-utils": "1.1.1",
 		"@vue/test-utils": "1.1.1",
 		"babel-core": "7.0.0-bridge.0",
