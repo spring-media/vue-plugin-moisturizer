@@ -1205,10 +1205,10 @@
     "@types/cheerio" "^0.22.10"
     cheerio "^1.0.0-rc.2"
 
-"@vue/test-utils@1.1.1":
-  version "1.1.1"
-  resolved "https://spring.jfrog.io/spring/api/npm/npm-red/@vue/test-utils/-/test-utils-1.1.1.tgz#01c3e4b22ed2b85d2e276b34d32c8ac4b726e452"
-  integrity sha1-AcPksi7SuF0uJ2s00yyKxLcm5FI=
+"@vue/test-utils@1.1.2":
+  version "1.1.2"
+  resolved "https://spring.jfrog.io/spring/api/npm/npm-red/@vue/test-utils/-/test-utils-1.1.2.tgz#fdb487448dceefeaf3d01d465f7c836a3d666dbc"
+  integrity sha1-/bSHRI3O7+rz0B1GX3yDaj1mbbw=
   dependencies:
     dom-event-types "^1.0.0"
     lodash "^4.17.15"
