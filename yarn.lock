@@ -1197,10 +1197,10 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@vue/server-test-utils@1.1.1":
-  version "1.1.1"
-  resolved "https://spring.jfrog.io/spring/api/npm/npm-red/@vue/server-test-utils/-/server-test-utils-1.1.1.tgz#f01332688b8c65f62a723450ff8b393eb04ac378"
-  integrity sha1-8BMyaIuMZfYqcjRQ/4s5PrBKw3g=
+"@vue/server-test-utils@1.1.2":
+  version "1.1.2"
+  resolved "https://spring.jfrog.io/spring/api/npm/npm-red/@vue/server-test-utils/-/server-test-utils-1.1.2.tgz#21efc2d90772b449a5421ee52dc69cf5f7f77634"
+  integrity sha1-Ie/C2QdytEmlQh7lLcac9ff3djQ=
   dependencies:
     "@types/cheerio" "^0.22.10"
     cheerio "^1.0.0-rc.2"
