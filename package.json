@@ -16,7 +16,7 @@
 		"vue": "~2.6.10"
 	},
 	"devDependencies": {
-		"@babel/cli": "7.12.8",
+		"@babel/cli": "7.12.10",
 		"@babel/core": "7.12.10",
 		"@babel/preset-env": "7.12.10",
 		"@vue/server-test-utils": "1.1.2",
