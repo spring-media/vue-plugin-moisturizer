@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@babel/cli@7.12.8":
-  version "7.12.8"
-  resolved "https://spring.jfrog.io/spring/api/npm/npm-red/@babel/cli/-/cli-7.12.8.tgz#3b24ed2fd5da353ee6f19e8935ff8c93b5fe8430"
-  integrity sha1-OyTtL9XaNT7m8Z6JNf+Mk7X+hDA=
+"@babel/cli@7.12.10":
+  version "7.12.10"
+  resolved "https://spring.jfrog.io/spring/api/npm/npm-red/@babel/cli/-/cli-7.12.10.tgz#67a1015b1cd505bde1696196febf910c4c339a48"
+  integrity sha1-Z6EBWxzVBb3haWGW/r+RDEwzmkg=
   dependencies:
     commander "^4.0.1"
     convert-source-map "^1.1.0"
